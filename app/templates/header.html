@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>База</title>
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+    <div class="container p-3 mx-auto flex-column">
+        <header class="d-flex justify-content-center mb-auto py-3">
+
+            <ul class="nav nav-pills">
+
+                {% for i in headers %}
+
+                {% if i[1] == 1 %}
+                <li class="nav-item"><a href="{{ url_for(i[2]) }}" class="nav-link active" aria-current="page">{{ i[0]
+                        }}</a>
+                </li>
+
+                {% else %}
+                <li class="nav-item"><a href="{{ url_for(i[2]) }}" class="nav-link">{{ i[0] }}</a></li>
+
+                {% endif %}
+                {% endfor %}
+                {% if not headers %}
+                <p>Not headers</p>
+                {% elif current_user.is_anonymous %}
+                <li class="nav-item"><a href="{{ url_for('register') }}" class="nav-link" aria-current="page">Sign
+                        Up</a></li>
+                {% else %}
+                <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+                {% endif %}
+
+            </ul>
+        </header>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+{% block scripts %}
+{{ moment.include_moment() }}
+{{ moment.lang('ru') }}
+{% endblock %}
+
+</html>

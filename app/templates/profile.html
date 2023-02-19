@@ -1,0 +1,44 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<main>
+    <div class="cover-container d-flex w-100 h-100 p-3 flex-column">
+        <div class="col-md-5 col-lg-4 mx-auto">
+            <h1>Sign In</h1>
+            <form action="" method="post">
+                <div class="row g-3 mx-auto">
+                    {{ form.hidden_tag() }}
+                    <div class="col-12">
+                        {{ form.username.label(for="username", class="form-label") }}
+                        {{ form.username(type="text", class="form-control", id="floatingInput",
+                        placeholder="Your Name") }}
+                        {% for error in form.username.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        {{ form.password.label(for="password", class="form-label") }}
+                        {{ form.password(type="password", class="form-control", id="floatingInput",
+                        placeholder="Your password") }}
+                        {% for error in form.password.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div><br>
+                    <div>{{ form.remember_me(class="form-check-input") }} {{
+                        form.remember_me.label(class="form-check-label") }}</div><br>
+                    <p class="nav-item">{{ form.submit(class="btn btn-lg btn-light fw-bold border-white bg-white")
+                        }}
+                    </p>
+                    <p class="nav-item"><a class="btn btn-sm btn-light fw-bold border-white bg-white"
+                            href="{{ url_for('reset_password_request') }}">Forgot password</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

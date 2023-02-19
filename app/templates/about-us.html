@@ -1,0 +1,18 @@
+{% extends 'header.html' %}
+{% block content %}
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <main class="px-3">
+        <h1>Обо Мне</h1>
+        <p class="lead">Учусь пользоваться микрофреймворком Flask для создания сайтов.</p>
+        <p class="lead">
+            Еще познаю магию Bootstrap'а и пытаюсь сделать сайт приятным для глаза(но пока не оч получается=)
+        </p>
+    </main>
+
+    <footer class="mt-auto text-white-50">
+        <p> <a href="https://github.com/s1zzen" class="text-white">My Git</a> and my telegram <a
+                href="https://t.me/s1zzen" class="text-white">@s1zzen</a>.</p>
+    </footer>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

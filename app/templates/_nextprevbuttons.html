@@ -1,0 +1,27 @@
+<div class="col-md-6 w-100">
+    <div class="row justify-content-between">
+        <div class="col-md-5 justify-content-between">
+            <div class="row">
+                {% if prev_url %}
+
+                <div class="col">
+                    <a href="{{ prev_url }}" class="btn btn-xs btn-light fw-bold">&laquo;
+                        Newer</a>
+                </div>
+                <div class="col-md-4"></div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-5 justify-content-between">
+            <div class="row">
+                {% if next_url %}
+                <div class="col-md-4">
+                </div>
+                <div class="col">
+                    <a href="{{ next_url }}" class="btn btn-xs btn-light fw-bold">Older
+                        &raquo;</a>
+                </div>{% endif %}
+            </div>
+        </div>
+    </div>
+</div>

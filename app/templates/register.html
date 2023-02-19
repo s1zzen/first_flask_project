@@ -1,0 +1,57 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<main>
+    <div class="cover-container d-flex w-100 h-100 p-3 flex-column">
+        <div class="col-md-5 col-lg-4 mx-auto">
+            <h1>Register</h1>
+            <form action="" method="post">
+                <div class="row g-3">
+                    {{ form.hidden_tag() }}
+                    <div class="col-12">
+                        {{ form.username.label(for="username", class="form-label") }}
+                        {{ form.username(type="text", class="form-control", id="floatingInput",
+                        placeholder="Alex123") }}
+                        {% for error in form.username.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        {{ form.email.label(for="email", class="form-label") }}
+                        {{ form.email(type="email", class="form-control", id="floatingInput",
+                        placeholder="name@example.com") }}
+                        {% for error in form.email.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        {{ form.password.label(for="password", class="form-label") }}
+                        {{ form.password(type="password", class="form-control", id="floatingInput",
+                        placeholder="Create password") }}
+                        {% for error in form.password.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        {{ form.password2.label(for="password2", class="form-label") }}
+                        {{ form.password2(type="password", class="form-control", id="floatingInput",
+                        placeholder="Confirm password") }}
+                        {% for error in form.password2.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p>{{ form.submit(class="btn btn-lg btn-light fw-bold border-white bg-white") }}</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

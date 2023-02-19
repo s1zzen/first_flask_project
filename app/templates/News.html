@@ -1,0 +1,50 @@
+{% extends "header.html" %}
+
+{% block content %}
+<main class="container">
+    <div class="cover-container d-flex w-100 h-100 p-3 flex-column">
+        <div class="col-md-5 col-lg-4 mx-auto">
+            <h1>Hi, {{ current_user.username }}!</h1>
+            <div class="row g-3 mx-auto">
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <p>
+                        {{ form.post.label(for="post", class="form-label") }}<br>
+                        {{ form.post(type="text", class="form-control", id="floatingInput",
+                        placeholder="what will you tell us today?") }}
+                        {% for error in form.post.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    </p>
+                    <p class="nav-item">{{ form.submit(class="btn btn-lg btn-light fw-bold border-white bg-white")
+                        }}
+                    </p>
+                </form>
+            </div>
+            <div class="row mb-2">
+                {% for post in posts %}
+                <div class="col-md-6 w-100">
+                    <div
+                        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white text-dark">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-primary">
+                                <h4><a href="profile/{{ post.author.username }}" class="btn btn-lg btn-dark fw-bold">{{
+                                        post.author.username
+                                        }}</a></h4>
+                            </strong>
+                            <h4 class="mb-2">Says:</h4>
+
+                            <p class="card-text mb-2">{{ post.body }}</p>
+                            <div class="mb-0 text-muted">{{ moment(post.timestamp).fromNow() }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% include '_nextprevbuttons.html' %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,6 @@
+.flake8
+app.db
+/venv
+/migrations
+__pycache__
+/.vscode
