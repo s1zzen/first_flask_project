@@ -31,10 +31,10 @@
                 {% if not headers %}
                 <p>Not headers</p>
                 {% elif current_user.is_anonymous %}
-                <li class="nav-item"><a href="{{ url_for('register') }}" class="nav-link" aria-current="page">Sign
+                <li class="nav-item"><a href="{{ url_for('auth.register') }}" class="nav-link" aria-current="page">Sign
                         Up</a></li>
                 {% else %}
-                <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+                <li class="nav-item"><a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a></li>
                 {% endif %}
 
             </ul>

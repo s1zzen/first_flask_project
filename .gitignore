@@ -4,3 +4,4 @@ app.db
 /migrations
 __pycache__
 /.vscode
+/trash
