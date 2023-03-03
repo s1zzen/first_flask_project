@@ -12,18 +12,16 @@ from logging.handlers import SMTPHandler, RotatingFileHandler
 
 import os
 
-app = Flask(__name__)
-app.config.from_object(Config)
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+db = SQLAlchemy()
+migrate = Migrate(db=db)
 
-login = LoginManager(app)
+login = LoginManager()
 login.login_view = 'auth.profile'  # type: ignore
 
-mail = Mail(app)
+mail = Mail()
 
-moment = Moment(app)
+moment = Moment()
 
 # [Название вкладки, текущаяя или нет, функции обработчики]
 headersPages = [['База', False, 'main.index'], ['О Нас', False, 'main.about_us'],

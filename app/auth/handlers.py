@@ -20,7 +20,7 @@ def profile():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
-            return redirect(url_for('main.profile'))
+            return redirect(url_for('auth.profile'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
@@ -48,7 +48,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('main.profile'))
+        return redirect(url_for('auth.profile'))
     return render_template('auth/register.html',
                            title='Register', headers=headers, form=form)
 
@@ -63,7 +63,7 @@ def edit_profile():
         current_user.about_me = form.about_me.data
         db.session.commit()
         flash('Your changes have been saved.')
-        return redirect(url_for('main.profile'))
+        return redirect(url_for('auth.profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username  # type: ignore
         form.about_me.data = current_user.about_me  # type: ignore
@@ -82,7 +82,7 @@ def reset_password_request():
         if user:
             send_password_reset_email(user)
         flash('Check your email for the instructions to reset your password')
-        return redirect(url_for('main.profile'))
+        return redirect(url_for('auth.profile'))
     return render_template('auth/reset_password_request.html',
                            title='Reset Password', form=form, headers=headers)
 
@@ -100,5 +100,5 @@ def reset_password(token):
         user.set_password(form.password.data)
         db.session.commit()
         flash('Your password has been reset.')
-        return redirect(url_for('main.profile'))
+        return redirect(url_for('auth.profile'))
     return render_template('auth/reset_password.html', form=form, headers=headers)
